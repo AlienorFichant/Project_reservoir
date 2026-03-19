@@ -68,8 +68,8 @@ class CSimulator1DIMPES:
 
 Imodel=CModel()
 ISimIMPES = CSimulator1DIMPES(Imodel)
-fMaxtime = 500*24*60*60
-fReportInterval = 100*24*60*60
+fMaxtime = 10*24*60*60 #10 day max time
+fReportInterval = 24*60*60 #1 day interval
 cmap = plt.get_cmap('gnuplot')
 while ISimIMPES.model.fTime<fMaxtime:
     color = color=cmap(1-ISimIMPES.model.fTime/fMaxtime)
@@ -81,9 +81,4 @@ plt.legend(title='Time [days]')
 plt.xlabel('Distance [m]')
 plt.ylabel('Saturation $s_w$')
 plt.show()
-
-
-
-
-
 
