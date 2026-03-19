@@ -28,21 +28,19 @@ class CModel:
         self.fNw = 2
         self.fKrwn = 0.4
         self.fSwirr = 0.2
-        self.fSnr = 0.2
-        self.fphi = 0.23
-        self.fqt = 2.315E-6 * self.fphi
-        self.fSwi = 0.19
-        self.mu_w = 1e-3               
-        self.mu_n = 2e-3   
-        self.fL = 0.057
+        self.fSnr = 0.29 #Sor
+        self.fphi = 0.23 #porosity
+        self.fPerm = 2.43e-13 #liquid permeability
+        self.fqt = 1/(100*60) #injection rate?
+        self.fSwi = 0.19 #from sheet
+        self.fL = 0.057 #length of core sample
         self.fTime = 0.0
         self.iNumCells = 100
-        self.fDeltaT = 24*60*60
-        self.fPerm=1.0E-13
+        self.fDeltaT = 3*60*60 #3hours
         self.fRightPressure = 1.0E7
         self.fMobilityWeighting = 1.0
-        self.fNonWetViscosity = 2.0E-3
-        self.fWetViscosity = 1.0E-3
+        self.fNonWetViscosity = 1.03e-3 
+        self.fWetViscosity = 0.96e-3
         self.setParameters()
     
     def krw(self,x):
@@ -50,8 +48,8 @@ class CModel:
     def krn(self,x):
         return (1-x)**self.fNn
     def fw(self,x):
-        lw = self.krw(x) / self.mu_w
-        ln = self.krn(x) / self.mu_n
+        lw = self.krw(x) / self.fWetViscosity
+        ln = self.krn(x) / self.fNonWetViscosity
         return lw / (lw + ln)
     
     def numDerivativeCentered(self,f, x, dx=1e-6):
@@ -78,7 +76,7 @@ class CModel:
 
 
     def fractionalFlowCorey(self,fSw):
-        return 1/(1+(1-fSw)**self.fNn*self.mu_w/(self.fKrwn*fSw**self.fNw*self.mu_n))
+        return 1/(1+(1-fSw)**self.fNn*self.fWetViscosity/(self.fKrwn*fSw**self.fNw*self.fNonWetViscosity))
 
     def findFrontSaturation(self):
         from scipy import optimize
