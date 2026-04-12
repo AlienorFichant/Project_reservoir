@@ -48,7 +48,6 @@ Vo_cumul_exp = [0.0, 0.0, 1.42, 2.42, 3.12, 3.82, 4.62, 5.42,
 Vw_cumul_exp = [0.0, 0.0, 0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
                 0.80, 0.80, 1.50, 2.40, 3.50, 5.70, 7.80, 9.20]
 
-Sw_mean_exp = Swi + Vo_exp_arr / PV
 
 # Convert experimental pressure drop to Pa
 dp_Pa_exp = np.array(dp_bar) * 1e5  
@@ -59,6 +58,9 @@ Vo_exp_arr = np.array(Vo_cumul_exp, dtype=float)
 Vw_exp_arr = np.array(Vw_cumul_exp, dtype=float)
 t_dp_arr   = np.array(t_dp_min,     dtype=float)
 dp_bar_arr = np.array(dp_bar,       dtype=float)
+
+#Experimental saturations
+Sw_mean_exp = Swi + Vo_exp_arr / PV
 
 # ═══════════════════════════════════════════════════════════════════════════
 # EXPERIMENTAL KR
