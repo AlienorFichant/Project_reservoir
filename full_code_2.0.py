@@ -5,8 +5,6 @@ from scipy.interpolate import interp1d
 # ═══════════════════════════════════════════════════════════════════════════
 # RESERVOIR PARAMETERS
 # ═══════════════════════════════════════════════════════════════════════════
-###Reservoir Parameters
-
 #Core geometry
 L = 5.7 #lenght (cm)
 L_m = L*1e-2 #(m)
