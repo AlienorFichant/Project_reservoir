@@ -429,7 +429,7 @@ def error_function(sim):
 #           1e-3 is appropriate — below this we are in numerical noise
 #   h    : finite difference step for gradient estimation
 #           must be large enough to avoid numerical noise but small enough
-#           to be accurate — h=0.05 is well suited for params of order 1
+#           to be accurate
 # ═══════════════════════════════════════════════════════════════════════════
 def steepest_descent(Nw0, Nn0, krwn0, lr, max_iter, tol, h):
     """
@@ -603,7 +603,6 @@ def plot_saturation_comparison(sim, label=""):
 
 
 def plot_convergence(history):
-    # history est une liste de dicts : {"iter":..., "error":..., "grad_norm":...}
     iters=[h["iter"] for h in history]
     errs =[h["error"] for h in history]
     grads=[h["grad_norm"] for h in history]
