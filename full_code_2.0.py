@@ -382,6 +382,10 @@ def run_impes(Nw, Nn, krwn, t_max_min=20.0, report_interval_min=2.0):
 # Formula per variable : (sum |exp - sim|)² / (sum |exp| + eps)²
 #   → dimensionless, balanced regardless of the magnitude of each variable
 #   → equivalent to a normalised L1 distance squared
+
+#Potenntial changes : 
+#L1 or MSE (quadratic) error type ?
+#Add error on dp or not ?
 # ═══════════════════════════════════════════════════════════════════════════
 def error_function(sim):
     """
@@ -414,8 +418,7 @@ def error_function(sim):
 # STEEPEST DESCENT
 #
 # Parameters :
-#   Nw0, Nn0, krwn0 : starting point — choose physically reasonable values
-#                     (Nw=2, Nn=2, krwn=0.4 is a standard starting point)
+#   Nw0, Nn0, krwn0 : starting point 
 #   lr   : learning rate — size of each gradient step in parameter space
 #           too large → diverges; too small → very slow
 #           typical range : 0.01 – 0.1 for these normalised Corey params
